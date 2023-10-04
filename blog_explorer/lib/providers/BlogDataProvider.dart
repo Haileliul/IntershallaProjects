@@ -7,5 +7,9 @@ class BlogDataProvider extends ChangeNotifier {
   void updatingBlogData() {
     BlogData = BlogController.fetchBlogs();
   }
-  // = BlogController.fetchBlogs();
+
+  bool isImageShow = true;
+  void updateImageStatus() {
+    isImageShow = false;
+  }
 }

@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart ' as http;
 import 'package:provider/provider.dart';
@@ -40,17 +38,25 @@ class BlogListPage extends StatelessWidget {
                     itemBuilder: (context, index) {
                       BlogModel blog = blogs[index];
                       return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20.0),
-                        child: ListTile(
-                          leading: snapshot.connectionState ==
-                                  ConnectionState.waiting
-                              ? Image(
+                        padding: const EdgeInsets.symmetric(vertical: 5.0),
+                        child: Container(
+                          decoration: BoxDecoration(boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 1,
+                            ),
+                          ], color: Colors.white),
+                          child: ListTile(
+                            leading: CircleAvatar(
+                                radius: 70,
+                                backgroundColor: Colors.transparent,
+                                child: Image(
                                   image: NetworkImage('${blog.imageUrl}'),
-                                )
-                              : CircularProgressIndicator(color: Colors.amber),
+                                )),
 
-                          title: Text("${blog.title}"),
-                          // subtitle: Text("${blog.title}"),
+                            title: Text("${blog.title}"),
+                            // subtitle: Text("${blog.title}"),
+                          ),
                         ),
                       );
                     },

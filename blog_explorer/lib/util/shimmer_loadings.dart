@@ -6,15 +6,36 @@ class Shimmer_Loading {
     return SizedBox(
       width: size.width,
       height: size.height,
-      child: Shimmer.fromColors(
-        baseColor: Colors.grey,
-        highlightColor: Colors.white70,
-        child: Container(
-          width: double.infinity,
-          height: double.infinity,
-          color: Colors.grey,
-          child: Text("This part is the Shimmer"),
-        ),
+      child: ListView.builder(
+        itemBuilder: (context, index) {
+          return Shimmer.fromColors(
+            baseColor: Colors.grey,
+            highlightColor: Colors.white54,
+            child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        height: size.height * 0.1,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Expanded(
+                      flex: 5,
+                      child: Container(
+                        height: size.height * 0.1,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                )),
+          );
+        },
       ),
     );
   }

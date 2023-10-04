@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:provider/provider.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive/hive.dart';
 
 import 'pages/BlogListPage.dart';
 import 'controllers/BlogController.dart';
 import 'providers/BlogDataProvider.dart';
 
-void main() => runApp(
-      MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (context) => BlogDataProvider(),
-          ),
-        ],
-        child: Home(),
-      ),
-    );
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Hive.openBox('myBox');
+  runApp(
+    Home(),
+  );
+}
 
 // ignore: must_be_immutable
 class Home extends StatelessWidget {
@@ -29,10 +29,17 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     BlogState = Provider.of<BlogDataProvider>(context);
     BlogStateUpdate = Provider.of<BlogDataProvider>(context, listen: true);
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "Blog Explorer",
-      home: BlogListPage(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => BlogDataProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "Blog Explorer",
+        home: BlogListPage(),
+      ),
     );
   }
 }
