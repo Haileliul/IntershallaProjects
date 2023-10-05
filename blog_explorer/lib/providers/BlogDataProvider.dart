@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import '../models/BlogModel.dart';
 import '../controllers/BlogController.dart';
 
 class BlogDataProvider extends ChangeNotifier {
-  Future<List<BlogModel>?>? BlogData = BlogController.fetchBlogs();
+  static late Box box;
+  late Future<List<BlogModel>?>? BlogData = BlogController.fetchBlogs();
   void updatingBlogData() {
     BlogData = BlogController.fetchBlogs();
   }

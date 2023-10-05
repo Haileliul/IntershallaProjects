@@ -1,3 +1,4 @@
+import 'package:blog_explorer/models/BlogModel.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:provider/provider.dart';
@@ -11,9 +12,17 @@ import 'providers/BlogDataProvider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  await Hive.openBox('myBox');
+  BlogDataProvider.box = await Hive.openBox<BlogModel>('blogBox');
+  Hive.registerAdapter(BlogModelAdapter());
   runApp(
-    Home(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => BlogDataProvider(),
+        ),
+      ],
+      child: Home(),
+    ),
   );
 }
 

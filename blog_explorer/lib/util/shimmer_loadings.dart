@@ -6,36 +6,50 @@ class Shimmer_Loading {
     return SizedBox(
       width: size.width,
       height: size.height,
-      child: ListView.builder(
-        itemBuilder: (context, index) {
-          return Shimmer.fromColors(
+      child: Column(
+        children: [
+          Shimmer.fromColors(
             baseColor: Colors.grey,
             highlightColor: Colors.white54,
-            child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        height: size.height * 0.1,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Expanded(
-                      flex: 5,
-                      child: Container(
-                        height: size.height * 0.1,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                )),
-          );
-        },
+            child: Container(
+              height: 300,
+              color: Colors.white,
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemBuilder: (context, index) {
+                return Shimmer.fromColors(
+                  baseColor: Colors.grey,
+                  highlightColor: Colors.white54,
+                  child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Container(
+                              height: size.height * 0.1,
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Expanded(
+                            flex: 5,
+                            child: Container(
+                              height: size.height * 0.1,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      )),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
