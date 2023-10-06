@@ -1,5 +1,7 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive/hive.dart';
@@ -43,6 +45,7 @@ class BlogController {
 
   static List<BlogModel> getCachedBlogs() {
     final cachedData = BlogDataProvider.box.get('blogs');
+
     List<BlogModel> listData = (cachedData as List)
         .map((e) => BlogModel.fromJson(e as Map<String, dynamic>))
         .toList();

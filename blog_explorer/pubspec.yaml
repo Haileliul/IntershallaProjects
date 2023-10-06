@@ -44,9 +44,12 @@ dependencies:
   hive_generator: ^2.0.1
   build_runner: ^2.4.6
   carousel_slider: ^4.2.1
+<<<<<<< HEAD
   flutter_localizations:
     sdk: flutter
   intl: any
+=======
+>>>>>>> 6f6fc64c15cccdf6a58d04bdb3c4d9dd7761fe34
 
 dev_dependencies:
   flutter_test:

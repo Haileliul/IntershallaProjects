@@ -24,6 +24,7 @@ class BlogListPage extends StatelessWidget {
     BlogStateUpdate = Provider.of<BlogDataProvider>(context, listen: true);
     final Shimmer = Shimmer_Loading();
     Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
